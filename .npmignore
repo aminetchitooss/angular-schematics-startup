@@ -1,4 +1,6 @@
-
-# Ignores TypeScript files, but keeps definitions.
-*.ts
-!*.d.ts
+index.ts
+update-app.component.files.ts
+update-file.ts
+update-index
+update-module.ts
+update-routing.ts

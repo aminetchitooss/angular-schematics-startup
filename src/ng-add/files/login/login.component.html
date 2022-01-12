@@ -1,0 +1,19 @@
+<ng-container *ngIf="loginDisplay==null">
+    <p>loading</p>
+</ng-container>
+<form *ngIf="loginDisplay==false" class="loginFrame h-100 w-100" (ngSubmit)="connect()">
+
+    <div class="form center column h-100 w-100">
+        <p class="description"> Indiquez vos présences et facilitez le travail d'équipe.</p>
+
+        <div class="login" appearance="outline">
+            <input type="email" matInput [formControl]="userNameCtrl" />
+
+        </div>
+
+        <button aria-label="login azure" class="btnEnabledWithCondition minRad" data-cy="loginBtn"
+            [ngClass]="{ 'enabled':userNameCtrl.valid}">Connexion</button>
+
+    </div>
+    <div class="h-100 bg"></div>
+</form>

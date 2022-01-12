@@ -1,0 +1,88 @@
+.splash {
+  opacity: 1;
+  display: flex;
+}
+
+.bg {
+  display: none;
+}
+
+.logo {
+  height: 80px;
+  margin-top: 1rem;
+  margin-bottom: 60px;
+}
+
+.description {
+  margin-bottom: 2rem;
+  line-height: 22px;
+  color: var(--primary-color);
+}
+
+mat-label {
+  font-weight: 500;
+  font-size: 0.9375rem;
+  line-height: 24px;
+  margin-bottom: 0.5rem;
+  min-height: 29px;
+}
+
+.login {
+  min-height: 81px;
+}
+
+.description,
+mat-label,
+.login,
+button {
+  width: 92%;
+  max-width: 400px;
+}
+
+.poweredBy {
+  margin-top: 40px;
+  height: 2rem;
+
+  svg-icon {
+    width: 96px;
+    &:last-child {
+      width: 144px;
+      margin-left: 1rem;
+    }
+  }
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.version::after {
+  bottom: 3px;
+}
+
+@media (min-width: 800px) {
+  .loginFrame {
+    display: flex;
+  }
+
+  .form {
+    box-shadow: 0px 4px 8px rgba(51, 51, 51, 0.16);
+    width: 40%;
+    position: relative;
+  }
+
+  .bg {
+    display: block;
+    width: 60%;
+    background-color: wheat;
+  }
+}
+button,
+input {
+  height: 48px;
+  width: 100%;
+  font-size: 1rem;
+}

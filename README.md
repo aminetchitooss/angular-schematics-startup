@@ -1,25 +1,33 @@
 # Angular Azure Msal
 
-[![npm](https://img.shields.io/npm/v/@tchitos/azure-msal.svg?maxAge=2592000?style=flat-square)](https://www.npmjs.com/package/@tchitos/azure-msal)
-[![npm](https://img.shields.io/npm/dm/@tchitos/azure-msal.svg)](https://www.npmjs.com/package/@tchitos/azure-msal)
+[![npm](https://img.shields.io/npm/v/@tchitos/angular-generate.svg?maxAge=2592000?style=flat-square)](https://www.npmjs.com/package/@tchitos/angular-generate)
+[![npm](https://img.shields.io/npm/dm/@tchitos/angular-generate.svg)](https://www.npmjs.com/package/@tchitos/angular-generate)
 
-Angular MSAL Azure - This package supports Angular 13+
+A schematic that creates a full custom project with preconfigured :
+
+- **Azure msal login workflow**,
+- **Pwa with cache invalidation**
+- **Material custom palette**
+- **Picture with Auth module**
+- **Svg Module**
+- **Api integration with `Interceptor service`**
+- **Cache mechanism as `memo-decorator`**
 
 ## Installation
 
 1. Create a new project
 
 ```sh
-ng new test
-cd test
+ng new myApp
+cd myApp
 
-# !! Make sure in the package.json to set "rxjs": "~6.6.0"
+# !! Make sure in the package.json to set "rxjs": "~6.6.7"
 ```
 
 2. Include Angular Azure Msal into your application.
 
 ```sh
-ng add @tchitos/azure-msal
+ng add @tchitos/angular-generate
 
 # The terminal will prompt and ask you to fill `clientId` and `tenantId`.
 ```
@@ -35,7 +43,7 @@ ng serve
 1. Clone this repository.
 
 ```sh
-git clone https://github.com/aminetchitooss/angular-azure-msal.git
+git clone https://github.com/aminetchitooss/angular-schematics-startup.git
 ```
 
 2. Install dependencies

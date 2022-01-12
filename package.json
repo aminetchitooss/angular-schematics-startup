@@ -1,16 +1,34 @@
 {
-	"name": "generate",
-	"version": "0.0.0",
-	"description": "A blank schematics",
-	"scripts": {
-		"build": "tsc -p tsconfig.json",
-		"test": "npm run build && jasmine src/**/*_spec.js"
+	"name": "@tchitos/angular-generate",
+	"version": "1.0.0",
+	"description": "A schematic that creates a full custom project with preconfigured (Azure msal login workflow, Pwa, material custom palette, Picture with Auth module, Svg Module, Api integration, cache mechanism )",
+	"author": {
+		"name": "tchitos"
 	},
 	"keywords": [
-		"schematics"
+		"schematics",
+		"angular azure",
+		"angular azure msal",
+		"schematics angular azure msal",
+		"schematics azure",
+		"schematics azure msal",
+		"schematics msal"
 	],
-	"author": "",
+	"scripts": {
+		"build": "tsc -p tsconfig.json"
+	},
 	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/aminetchitooss/angular-schematics-startup.git"
+	},
+	"bugs": {
+		"url": "https://github.com/aminetchitooss/angular-schematics-startup/issues"
+	},
+	"homepage": "https://github.com/aminetchitooss/angular-schematics-startup#readme",
+	"publishConfig": {
+		"registry": "https://registry.npmjs.org"
+	},
 	"schematics": "./src/collection.json",
 	"dependencies": {
 		"@angular-devkit/core": "^12.2.11",

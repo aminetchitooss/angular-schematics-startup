@@ -1,0 +1,69 @@
+@use "@angular/material" as mat;
+@include mat.core();
+
+@function createPalette($color: "primary") {
+  $palette: (
+    50: var(--#{$color}-50),
+    100: var(--#{$color}-100),
+    200: var(--#{$color}-200),
+    300: var(--#{$color}-300),
+    400: var(--#{$color}-400),
+    500: var(--#{$color}-500),
+    600: var(--#{$color}-600),
+    700: var(--#{$color}-700),
+    800: var(--#{$color}-800),
+    900: var(--#{$color}-900),
+    A100: var(--#{$color}-A100),
+    A200: var(--#{$color}-A200),
+    A400: var(--#{$color}-A400),
+    A700: var(--#{$color}-A70),
+    contrast: (
+      50: #000000,
+      100: #000000,
+      200: #000000,
+      300: #000000,
+      400: #000000,
+      500: #ffffff,
+      600: #ffffff,
+      700: #ffffff,
+      800: #ffffff,
+      900: #ffffff,
+      A100: #000000,
+      A200: #000000,
+      A400: #000000,
+      A700: #000000
+    )
+  );
+
+  @return $palette;
+}
+
+$primary-palette: createPalette("primary");
+$accent-palette: createPalette("accent");
+$warn-palette: createPalette("danger");
+
+$<%= projectName %>-primary: mat.define-palette($primary-palette);
+$<%= projectName %>-accent: mat.define-palette($accent-palette);
+$<%= projectName %>-warn: mat.define-palette($warn-palette);
+
+$<%= projectName %>-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $<%= projectName %>-primary,
+      accent: $<%= projectName %>-accent,
+      warn: $<%= projectName %>-warn
+    )
+  )
+);
+@include mat.all-component-themes($<%= projectName %>-theme);
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  background-color: var(--bg-nav-color);
+  border-radius: 6px;
+}
+
+.login {
+  .mat-form-field-infix {
+    border-width: 5px;
+  }
+}

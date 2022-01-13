@@ -2,7 +2,11 @@ import { SchematicContext, Tree } from "@angular-devkit/schematics";
 import { MsalSchematicOption } from ".";
 import { updateFile } from "./update-file";
 
-const appHtmlUpdatedContent = `<router-outlet *ngIf="!isIframe"></router-outlet>`;
+const appHtmlUpdatedContent = `
+<ng-container *ngIf="!isIE">
+    <router-outlet *ngIf="!isIframe"></router-outlet>
+</ng-container>
+`;
 
 export function updateAppHtml(options: MsalSchematicOption) {
   return (_host: Tree, _context: SchematicContext) => {
@@ -10,36 +14,52 @@ export function updateAppHtml(options: MsalSchematicOption) {
   };
 }
 
-const appTsUpdatedContent = `import { Component, OnInit, OnDestroy } from '@angular/core';
-import { MsalService, MsalBroadcastService } from '@azure/msal-angular';
-import { InteractionStatus, EventMessage, EventType } from '@azure/msal-browser';
-import { Subject } from 'rxjs';
+const appTsUpdatedContent = `import { Component, OnInit } from '@angular/core';
+import { MsalBroadcastService, MsalService } from '@azure/msal-angular';
+import { EventMessage, EventType, InteractionStatus } from '@azure/msal-browser';
 import { filter, takeUntil } from 'rxjs/operators';
+import { SwUpdate } from '@angular/service-worker';
+import { interval, Subject } from 'rxjs';
+
+const isIE: boolean = window.navigator.userAgent.indexOf('MSIE ') > -1 || window.navigator.userAgent.indexOf('Trident/') > -1;
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit {
+  isIE: boolean = isIE;
   isIframe = false;
   private readonly _destroying$ = new Subject<void>();
 
-  constructor(private authService: MsalService, private msalBroadcastService: MsalBroadcastService) {}
+  constructor(private _msalBroadcastService: MsalBroadcastService, private _msalService: MsalService, public _updates: SwUpdate) {
+    if (_updates.isEnabled) interval(6 * 60 * 60).subscribe(() => _updates.checkForUpdate().then(() => console.log('checking for updates')));
+    this.checkForUpdates();
+  }
+
+  public checkForUpdates(): void {
+    this._updates.available.subscribe((event) => this.promptUser());
+  }
+
+  private promptUser(): void {
+    console.log('updating to new version');
+    this._updates.activateUpdate().then(() => document.location.reload());
+  }
 
   ngOnInit(): void {
     this.isIframe = window !== window.parent && !window.opener; // Remove this line to use Angular Universal
 
-    this.authService.instance.enableAccountStorageEvents(); // Optional - This will enable ACCOUNT_ADDED and ACCOUNT_REMOVED events emitted when a user logs in or out of another tab or window
-    this.msalBroadcastService.msalSubject$
+    this._msalService.instance.enableAccountStorageEvents(); // Optional - This will enable ACCOUNT_ADDED and ACCOUNT_REMOVED events emitted when a user logs in or out of another tab or window
+    this._msalBroadcastService.msalSubject$
       .pipe(filter((msg: EventMessage) => msg.eventType === EventType.ACCOUNT_ADDED || msg.eventType === EventType.ACCOUNT_REMOVED))
       .subscribe((result: EventMessage) => {
-        if (this.authService.instance.getAllAccounts().length === 0) {
+        if (this._msalService.instance.getAllAccounts().length === 0) {
           window.location.pathname = '/';
         }
       });
 
-    this.msalBroadcastService.inProgress$
+    this._msalBroadcastService.inProgress$
       .pipe(
         filter((status: InteractionStatus) => status === InteractionStatus.None),
         takeUntil(this._destroying$)
@@ -55,11 +75,11 @@ export class AppComponent implements OnInit, OnDestroy {
      * To use active account set here, subscribe to inProgress$ first in your component
      * Note: Basic usage demonstrated. Your app may require more complicated account selection logic
      */
-    let activeAccount = this.authService.instance.getActiveAccount();
+    let activeAccount = this._msalService.instance.getActiveAccount();
 
-    if (!activeAccount && this.authService.instance.getAllAccounts().length > 0) {
-      let accounts = this.authService.instance.getAllAccounts();
-      this.authService.instance.setActiveAccount(accounts[0]);
+    if (!activeAccount && this._msalService.instance.getAllAccounts().length > 0) {
+      let accounts = this._msalService.instance.getAllAccounts();
+      this._msalService.instance.setActiveAccount(accounts[0]);
     }
   }
 
@@ -68,6 +88,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this._destroying$.complete();
   }
 }
+
 `;
 
 export function updateAppTs(options: MsalSchematicOption) {

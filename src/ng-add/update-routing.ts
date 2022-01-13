@@ -9,11 +9,8 @@ import { BrowserUtils } from '@azure/msal-browser';
 import { AuthGuard } from './shared/guards/auth.guard';
 
 const routes: Routes = [
-  {
-    path: 'dashboard',
-    loadChildren: () => import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
-    canActivate: [AuthGuard, MsalGuard]
-  },
+  { path: 'home', loadChildren: () => import('./home/home.module').then((m) => m.HomeModule), canActivate: [AuthGuard, MsalGuard], data: { preload: false } },
+
   {
     path: 'error',
     loadChildren: () => import('./login/login.module').then((m) => m.LoginModule),

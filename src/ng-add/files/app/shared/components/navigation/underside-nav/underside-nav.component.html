@@ -1,0 +1,17 @@
+<a (click)="logout()" class="link flex logout-btn">
+    <div class="frame-svg center">
+        <svg-icon src="logout"></svg-icon>
+    </div>
+    Déconnexion
+</a>
+
+
+<div class="sponsor flex">
+    <svg-icon class="icon-primary-fill" src="logo_servier"></svg-icon>
+    <svg-icon src="logo_df"></svg-icon>
+</div>
+
+<div class="flex">
+    <a [routerLink]="['policies']" (mouseenter)="startPreload()" routerLinkActive="underside-router-link-active"
+        (click)="switchRoute()" class="cgu" matRipple>Conditions et politiques</a>
+</div>

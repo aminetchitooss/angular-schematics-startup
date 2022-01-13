@@ -1,0 +1,7 @@
+<!-- <div class="picture" [ngStyle]="profile?.initials | palette"> -->
+<div class="center picture" *ngIf='profile'>
+    <p>{{profile?.initials}}</p>
+    <div class="image-circle animate" #circle> </div>
+    <img class="hide" (load)="loadImage(circle,image)" (error)="clearAnimation(circle)"
+        [src]="(profile.photo | authPicture ) | async" #image>
+</div>

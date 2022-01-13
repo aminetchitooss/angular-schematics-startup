@@ -1,0 +1,32 @@
+.maintenance-wrap {
+  padding: 1rem;
+  flex-wrap: wrap;
+  text-align: center;
+  .worker {
+    min-height: 200px;
+    min-width: 200px;
+    width: 200px;
+    height: 200px;
+  }
+}
+
+.maintenance-content {
+  p {
+    color: var(--warning-color);
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin: 1rem 0 0.6rem;
+  }
+  footer {
+    font-size: 1rem;
+
+    a {
+      background: linear-gradient(to bottom, var(--warning-color) 0%, var(--warning-color) 100%);
+      background-position: 0 100%;
+      background-repeat: repeat-x;
+      background-size: 1px 1px;
+      color: rgba(7, 6, 0, 0.7);
+      text-decoration: none;
+    }
+  }
+}

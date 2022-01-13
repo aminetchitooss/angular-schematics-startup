@@ -1,0 +1,6 @@
+<div class="version">v_{{version}}</div>
+<!-- <theme-changer [isDarkMode]="isDarkMode"></theme-changer> -->
+<div class="profile--info flex" *ngIf="user | profilInfo as profile">
+    <picture [profile]="profile"></picture>
+    <p>{{profile.name}}</p>
+</div>

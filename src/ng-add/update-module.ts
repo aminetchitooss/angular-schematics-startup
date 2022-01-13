@@ -2,12 +2,12 @@ import { SchematicContext, Tree } from "@angular-devkit/schematics";
 import { MsalSchematicOption } from ".";
 import { updateFile } from "./update-file";
 
-const updatedContent = `import { NgModule } from "@angular/core";
-import { BrowserModule } from "@angular/platform-browser";
+const updatedContent = `import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from "./app-routing.module";
-import { AppComponent } from "./app.component";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {
   MsalInterceptor,
@@ -21,16 +21,21 @@ import {
   MsalBroadcastService,
   MsalRedirectComponent,
   MsalGuard
-} from "@azure/msal-angular";
-import { BrowserCacheLocation, InteractionType, IPublicClientApplication, PublicClientApplication } from "@azure/msal-browser";
-import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
-import { APP_CONFIG, App_Config } from "./app.config";
+} from '@azure/msal-angular';
+import { BrowserCacheLocation, InteractionType, IPublicClientApplication, PublicClientApplication } from '@azure/msal-browser';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { APP_CONFIG, App_Config } from './app.config';
+import { StoreModule } from '@ngrx/store';
+import { userReducer } from '@store/user/user.reducer';
+import { InterceptService } from '@services/intercept.service';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 export function MSALInstanceFactory(configService: App_Config): IPublicClientApplication {
   return new PublicClientApplication({
     auth: {
       clientId: configService.msal.clientId,
-      authority: "https://login.microsoftonline.com/" + configService.msal.tenantId,
+      authority: 'https://login.microsoftonline.com/' + configService.msal.tenantId,
       redirectUri: configService.msal.redirectUri,
       postLogoutRedirectUri: configService.msal.redirectUri,
       navigateToLoginRequestUrl: false
@@ -52,7 +57,7 @@ export function MSALGuardConfigFactory(configService: App_Config): MsalGuardConf
 
 export function MSALInterceptorConfigFactory(configService: App_Config): MsalInterceptorConfiguration {
   const protectedResourceMap = new Map<string, Array<string>>();
-  protectedResourceMap.set("https://graph.microsoft.com/v1.0/me", ["user.read"]);
+  protectedResourceMap.set('https://graph.microsoft.com/v1.0/me', ['user.read']);
   protectedResourceMap.set(configService.baseUrl, configService.msal.scopes);
 
   return {
@@ -63,7 +68,20 @@ export function MSALInterceptorConfigFactory(configService: App_Config): MsalInt
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, MsalModule, BrowserAnimationsModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    MsalModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    StoreModule.forRoot({ user: userReducer }),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
+  ],
   providers: [
     {
       provide: MSAL_INSTANCE,
@@ -74,6 +92,11 @@ export function MSALInterceptorConfigFactory(configService: App_Config): MsalInt
     {
       provide: HTTP_INTERCEPTORS,
       useClass: MsalInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptService,
       multi: true
     },
 
@@ -94,6 +117,7 @@ export function MSALInterceptorConfigFactory(configService: App_Config): MsalInt
   bootstrap: [AppComponent, MsalRedirectComponent]
 })
 export class AppModule {}
+
 
 `;
 

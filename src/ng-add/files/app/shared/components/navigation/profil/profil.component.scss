@@ -1,0 +1,22 @@
+.version {
+  position: absolute;
+  right: 5px;
+  top: 3px;
+  font-size: 0.7rem;
+}
+.profil {
+  .profile--info {
+    margin-bottom: 1.5rem;
+  }
+  picture {
+    display: flex;
+    justify-content: center;
+    margin-right: 1rem;
+  }
+  p {
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 22px;
+    letter-spacing: 0.01em;
+  }
+}

@@ -6,11 +6,11 @@
   "properties": {
     "srcDir": {
       "type": "string",
-      "default": "./src/"
+      "default": "./testSrc/"
     },
     "appDir": {
       "type": "string",
-      "default": "./src/app/"
+      "default": "./testSrc/app/"
     },
     "clientId": {
       "type": "string",
@@ -19,7 +19,22 @@
     "tenantId": {
       "type": "string",
       "x-prompt": "What is your tenantId?"
+    },
+    "projectName": {
+      "type": "string",
+      "default": "myApp",
+      "x-prompt": "What is your project name?"
+    },
+    "description": {
+      "type": "string",
+      "default": "Test and create stuff",
+      "x-prompt": "What is your project description?"
+    },
+    "url": {
+      "type": "string",
+      "default": "test.servier.com",
+      "x-prompt": "What is your project website?"
     }
   },
-  "required": ["clientId", "tenantId"]
+  "required": ["clientId", "tenantId", "projectName", "description", "url"]
 }

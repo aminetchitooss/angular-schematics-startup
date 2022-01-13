@@ -1,0 +1,124 @@
+:root {
+  --bg-gradient: linear-gradient(286deg, rgba(27, 231, 255, 0.5) 25.99%, #e47aff 64.62%, rgba(109, 19, 255, 0.6) 80.2%);
+  --bg-gradient-dark: linear-gradient(126.05deg, rgba(241, 42, 42, 0.9) 25.95%, #bf1ceb 44.46%, #06ad57 65.35%, rgba(6, 173, 87, 0.6) 76.7%);
+
+  --primary-50: #eaf6fb;
+  --primary-100: #ceeaf3;
+  --primary-150: #8dbfc9;
+  --primary-200: #80b8dd;
+  --primary-300: #6dc7dd;
+  --primary-400: #2686c4;
+  --primary-500: #0071ba;
+  --primary-600: #0069b3;
+  --primary-700: #005eab;
+  --primary-800: #0054a3;
+  --primary-900: #033878;
+  --primary-A50: #ebf1fe;
+  --primary-A100: #bfd7ff;
+  --primary-A200: #8cb7ff;
+  --primary-A400: #5997ff;
+  --primary-A700: #4087ff;
+
+  --accent-50: #eceff1;
+  --accent-100: #cfd8dc;
+  --accent-200: #b0bec5;
+  --accent-300: #90a4ae;
+  --accent-400: #78919c;
+  --accent-500: #607d8b;
+  --accent-600: #587583;
+  --accent-700: #4e6a78;
+  --accent-800: #44606e;
+  --accent-900: #334d5b;
+  --accent-A50: #90a4ae;
+  --accent-A100: #abe1ff;
+  --accent-A200: #78ceff;
+  --accent-A400: #45bcff;
+  --accent-A700: #2bb3ff;
+
+  --success-50: #e4f5f4;
+  --success-100: #bbe6e3;
+  --success-200: #8ed5d1;
+  --success-300: #61c4be;
+  --success-400: #3fb7b0;
+  --success-500: #1daaa2;
+  --success-600: #1aa39a;
+  --success-700: #159990;
+  --success-800: #119086;
+  --success-900: #0a7f75;
+  --success-A50: #61c4be;
+  --success-A100: #affff7;
+  --success-A200: #7cfff2;
+  --success-A400: #49ffed;
+  --success-A700: #30ffea;
+
+  --warning-50: #fff3e0;
+  --warning-100: #ffe0b3;
+  --warning-200: #ffcc80;
+  --warning-300: #ffb74d;
+  --warning-400: #ffa726;
+  --warning-500: #ff9800;
+  --warning-600: #ff9000;
+  --warning-700: #ff8500;
+  --warning-800: #ff7b00;
+  --warning-900: #ff6a00;
+  --warning-A50: #ffb74d;
+  --warning-A100: #ffffff;
+  --warning-A200: #fff7f2;
+  --warning-A400: #ffd6bf;
+  --warning-A700: #ffc5a6;
+
+  --danger-50: #fdeaed;
+  --danger-100: #faccd1;
+  --danger-200: #f7aab3;
+  --danger-300: #f48794;
+  --danger-400: #f16e7d;
+  --danger-500: #db3169;
+  --danger-600: #ed4d5e;
+  --danger-700: #eb4353;
+  --danger-800: #e83a49;
+  --danger-900: #e42938;
+  --danger-A50: #f48794;
+  --danger-A100: #ffffff;
+  --danger-A200: #ffeff0;
+  --danger-A400: #ffbcc0;
+  --danger-A700: #ffa2a8;
+
+  --gray-50: #f2f2f2;
+  --gray-100: #e0e0e0;
+  --gray-150: #f8f8f9;
+  --gray-200: #eee;
+  --gray-230: #bdbdbd;
+  --gray-250: #c4c4c4;
+  --gray-300: #828282;
+  --gray-350: #7a818c;
+  --gray-370: #707070;
+  --gray-400: #4f4f4f;
+  --gray-500: #333;
+}
+
+@mixin settingColors($type: "primary") {
+  --#{$type}-color: var(--#{$type}-500);
+  --#{$type}-dark-color: var(--#{$type}-900);
+  --#{$type}-light-color: var(--#{$type}-150);
+}
+
+:root {
+  @include settingColors();
+  @include settingColors("accent");
+  @include settingColors("success");
+  @include settingColors("warning");
+  @include settingColors("danger");
+
+  --dark: #121216;
+  --border-dark: #32323d;
+
+  --shadow: 0px 4px 8px rgba(51, 51, 51, 0.08);
+  --side-shadow: 0px 8px 32px rgba(51, 51, 51, 0.08);
+
+  --bg-color: white;
+  --bg-content-color: var(--gray-200);
+  --bg-nav-color: white;
+
+  --text-color: var(--dark);
+  --text-reverse-color: white;
+}

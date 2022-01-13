@@ -1,0 +1,144 @@
+@use "./material_theme.scss";
+@use "./colors.scss";
+@use "./animations.scss";
+@use "./breakpoints.scss" as var;
+@use "./buttons.scss";
+@use "./icons.scss";
+@use "./layout.scss";
+@use "./loading.scss";
+@use "./navigation.scss";
+@use "./picture.scss";
+@use "./root_index.scss";
+@use "./route_link.scss";
+
+:root {
+  background-color: var(--bg-color);
+  font-family: "Roboto", sans-serif;
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  font-family: "Roboto", sans-serif;
+  height: 100%;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+main {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+p,
+label,
+mat-label,
+b,
+span {
+  margin: 0;
+  color: var(--text-color);
+}
+
+img,
+video {
+  object-fit: cover;
+}
+
+input {
+  font-size: 16px;
+}
+
+@mixin getVersion() {
+  &::after {
+    content: attr(data-version);
+    position: absolute;
+    min-width: 40px;
+    bottom: 10px;
+    left: 3px;
+    font-size: 0.875rem;
+    color: var(--text-color);
+  }
+}
+
+.version {
+  @include getVersion();
+}
+
+.emptyList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  p {
+    color: var(--gray-350);
+    font-size: 1.1rem;
+  }
+}
+
+.overlay {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+@supports (overflow-y: overlay) {
+  .overlay {
+    overflow-y: overlay;
+  }
+}
+
+.mobile {
+  display: none;
+}
+
+@media (max-width: var.$maxLargeScreen) {
+  .pageFrame {
+    padding: 0;
+    margin: 0rem auto;
+    height: 100%;
+    width: 100%;
+
+    &.policyRoute {
+      .main.policyRoute-main {
+        padding: 1rem;
+      }
+    }
+    &.defaultRoute {
+      margin: 1rem auto;
+      height: calc(100% - 5rem);
+      width: calc(100% - 2rem);
+
+      .main {
+        border-radius: 16px;
+      }
+    }
+    .main {
+      border-radius: 0;
+      &__scrolled {
+        height: calc(100% - 8rem);
+      }
+    }
+  }
+  .desktop {
+    display: none;
+  }
+  .mobile {
+    display: block;
+  }
+}
+
+.capitlaized {
+  text-transform: capitalize;
+  font-style: normal;
+}

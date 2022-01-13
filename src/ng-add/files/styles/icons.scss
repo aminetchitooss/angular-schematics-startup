@@ -1,0 +1,27 @@
+@use "src/styles/breakpoints.scss" as var;
+
+@mixin center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.svgIconContainer {
+  width: 100%;
+  height: 100%;
+  @include center();
+
+  svg {
+    height: inherit;
+    width: inherit;
+    fill: inherit;
+  }
+}
+
+$colors: "primary", "accent", "success", "warning", "danger";
+
+@each $color in $colors {
+  .icon-#{$color} {
+    fill: var(--#{$color}-color) !important;
+  }
+}

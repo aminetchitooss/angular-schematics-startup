@@ -1,0 +1,112 @@
+@use "src/styles/breakpoints.scss" as var;
+
+@mixin placeAnimatedDot($top: 8%, $left: 80%) {
+  .image-circle {
+    &:after {
+      top: $top;
+      left: $left;
+    }
+  }
+}
+
+.version {
+  @include placeAnimatedDot();
+}
+
+$circle1Color: #ed5352;
+
+picture {
+  display: flex;
+  justify-content: center;
+}
+
+.picture {
+  height: 3.5rem;
+  width: 3.5rem;
+  border-radius: 50%;
+  font-weight: 400;
+  font-size: 0.8rem;
+  position: relative;
+  background-color: #eee1df;
+  color: var(--dark-medium);
+
+  .image-circle {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-left-color: $circle1Color;
+    border-top-color: $circle1Color;
+    position: absolute;
+    display: none;
+
+    &:after {
+      content: "";
+      display: block;
+      width: clamp(10px, 10%, 20px);
+      height: clamp(10px, 10%, 20px);
+      border-radius: 50%;
+      background: purple;
+      position: absolute;
+      background-color: $circle1Color;
+      box-shadow: 0 0px 30px 8px $circle1Color;
+    }
+
+    // &.animate {
+    //   animation: spin 2s 20 linear;
+    //   display: block;
+    // }
+  }
+
+  p {
+    color: var(--dark);
+  }
+
+  img {
+    position: absolute;
+    object-position: 0 0;
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+    transition: all 0.25s ease-in;
+    &.hide {
+      transform: scale(0.95);
+      opacity: 0;
+    }
+  }
+  @include placeAnimatedDot();
+}
+
+@media (max-height: var.$maxHeightSmallScreen) {
+  theme-changer {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    margin: 0 !important;
+  }
+}
+
+@mixin resizePicture($size: 140px) {
+  .picture {
+    width: $size;
+    height: $size;
+  }
+}
+
+@mixin resizeProfilpicture($size: 48px) {
+  .profil {
+    @include resizePicture($size);
+  }
+}
+
+@include resizeProfilpicture(48px);
+
+@keyframes spin {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+.small {
+  @include resizePicture(40px);
+}

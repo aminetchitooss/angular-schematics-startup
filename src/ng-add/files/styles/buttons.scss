@@ -1,0 +1,64 @@
+button {
+  min-height: 48px;
+  padding: 0px 32px;
+  font-size: 1rem;
+  border: 0;
+  transition-property: background-color, color;
+  transition-duration: 200ms;
+  border-radius: 40px;
+  cursor: pointer;
+  color: var(--text-color);
+  border: none;
+  white-space: nowrap;
+  &.small {
+    min-height: 2rem;
+    &.modal-flat {
+      padding: 0 3rem;
+    }
+  }
+  &.minRad {
+    border-radius: 4px;
+  }
+  em {
+    font-style: normal;
+  }
+}
+
+$colors: "primary", "accent", "success", "warning", "danger";
+
+@each $color in $colors {
+  .btn-#{$color} {
+    background: var(--#{$color}-color);
+    border-color: var(--#{$color}-color);
+    color: white;
+    &:hover,
+    &:active {
+      background: var(--#{$color}-hover-color);
+      color: var(--text-reverse-color);
+    }
+  }
+  .btn-#{$color}-hollow {
+    color: var(--#{$color}-color);
+    border: 1px solid var(--#{$color}-color);
+    background-color: var(--bg-hollow-color);
+    &.uncurved {
+      border-radius: 4px;
+    }
+  }
+}
+
+@mixin enableAnim() {
+  background: var(--accent-100);
+  color: var(--accent-200);
+  cursor: not-allowed;
+
+  &.enabled {
+    background: var(--primary-color);
+    cursor: pointer;
+    color: white;
+  }
+}
+
+.btnEnabledWithCondition {
+  @include enableAnim();
+}

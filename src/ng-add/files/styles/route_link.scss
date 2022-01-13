@@ -1,0 +1,41 @@
+route-link {
+  display: block;
+  width: 100%;
+  position: relative;
+
+  svg-icon {
+    display: flex;
+    width: 1rem;
+    height: 1rem;
+    margin-right: 16px;
+    svg {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  .link {
+    color: var(--text-color);
+    fill: var(--text-color);
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 8px;
+    max-width: 17rem;
+    margin-bottom: 0.5rem;
+    padding: 0 0rem 0 1rem;
+    height: 46px;
+    &:hover {
+      background: var(--gray-50);
+    }
+  }
+  &:last-child {
+    .link {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.router-link-active {
+  fill: var(--primary-color) !important;
+  color: var(--primary-color) !important;
+}

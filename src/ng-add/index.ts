@@ -98,7 +98,7 @@ function updateAngularConfig() {
       json[type][projectName]["prefix"] = "";
       const schematicsOld = json[type][projectName]["schematics"];
 
-      if (!schematicsOld) {
+      if (schematicsOld) {
         schematicsOld["@schematics/angular:component"]["changeDetection"] = "OnPush";
         schematicsOld["@schematics/angular:component"]["skipTests"] = true;
         json[type][projectName]["schematics"] = {

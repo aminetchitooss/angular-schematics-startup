@@ -67,9 +67,7 @@ function addPackageJsonDependency() {
 
       for (const dep of dependenciesToInstall) {
         const { globalPkg, version } = dep;
-        if (!json[type][globalPkg]) {
-          json[type][globalPkg] = version;
-        }
+        json[type][globalPkg] = version;
         _context.logger.log("info", `${globalPkg} was added as dependency`);
       }
 

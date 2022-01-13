@@ -14,25 +14,32 @@
     },
     "clientId": {
       "type": "string",
+      "minLength": 5,
+      "default": "f444ccf2-d655-421a-a619-718b541c8d2b",
       "x-prompt": "What is your clientId ?"
     },
     "tenantId": {
       "type": "string",
+      "minLength": 5,
+      "default": "cc0a4ff6-9454-4e4b-881b-85f448dee2e3",
       "x-prompt": "What is your tenantId? "
     },
     "projectName": {
       "type": "string",
       "default": "myApp",
+      "minLength": 2,
       "x-prompt": "What is your project name? "
     },
     "description": {
       "type": "string",
       "default": "Test and create stuff",
+      "minLength": 2,
       "x-prompt": "What is your project description ?"
     },
     "url": {
       "type": "string",
       "default": "https://myApp.servier.com",
+      "minLength": 10,
       "x-prompt": "What is your project website ?"
     }
   },

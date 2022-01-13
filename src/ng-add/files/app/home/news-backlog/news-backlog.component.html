@@ -1,6 +1,0 @@
-<ng-container *ngIf="_dataService.isMobile$ | async as mobileLayout; else MidScreenOrHigher">
-    <construction msg="VIEW BACKGLOG__phone"></construction>
-</ng-container>
-<ng-template #MidScreenOrHigher>
-    <construction msg="VIEW BACKGLOG__desktop"></construction>
-</ng-template>

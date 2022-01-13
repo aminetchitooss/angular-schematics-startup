@@ -15,8 +15,8 @@ export function ngAdd(options: MsalSchematicOption): Rule {
     updateIndex(options),
     updateAppModule(options),
     updateAppRouting(options),
-    // updateTsConfig(),
     updateAngularConfig(),
+    updateTsConfig(),
 
     mergeWith(
       apply(url("./files"), [
@@ -142,69 +142,72 @@ function updateAngularConfig() {
   };
 }
 
-/**
- * 
- * function updateAngularConfig() {
+function updateTsConfig() {
   return (_host: Tree, _context: SchematicContext) => {
-    const fileName = "angular.json";
+    const fileName = "tsconfig.json";
     if (_host.exists(fileName)) {
-      const jsonStr = _host.read(fileName)!.toString("utf-8");
-      const json = JSON.parse(jsonStr);
+      let jsonStr = _host.read(fileName)!.toString("utf-8");
+      if (jsonStr.split("*/").length > 1) jsonStr = jsonStr.split("*/")[1];
 
-      const type = "projects";
-      if (!json[type]) {
-        return _host;
-      }
-      const projectName = Object.keys(json[type])[0];
-      if (!projectName) return _host;
+      try {
+        const json = JSON.parse(jsonStr);
 
-      json[type][projectName]["prefix"] = "";
-      const schematicsOld = json[type][projectName]["schematics"];
+        const type = "compilerOptions";
+        if (!json[type]) {
+          return _host;
+        }
 
-      if (!schematicsOld) {
-        schematicsOld["@schematics/angular:component"]["changeDetection"] = "OnPush";
-        schematicsOld["@schematics/angular:component"]["skipTests"] = true;
-        json[type][projectName]["schematics"] = {
-          ...schematicsOld,
-          "@schematics/angular:application": {
-            strict: true
-          },
-          "@schematics/angular:class": {
-            skipTests: true
-          },
-          "@schematics/angular:guard": {
-            skipTests: true
-          },
-          "@schematics/angular:directive": {
-            skipTests: true
-          },
-          "@schematics/angular:pipe": {
-            skipTests: true
-          },
-          "@schematics/angular:service": {
-            skipTests: true
+        const configsToAdd = [
+          { key: "resolveJsonModule", value: true },
+          { key: "esModuleInterop", value: true },
+          {
+            key: "paths",
+            value: {
+              "@api/*": ["src/app/shared/api/*"],
+              "@components/*": ["src/app/shared/components/*"],
+              "@globalUtils/*": ["src/app/shared/global-utils/*"],
+              "@guards/*": ["src/app/shared/guards/*"],
+              "@interfaces/*": ["src/app/shared/interfaces/*"],
+              "@services/*": ["src/app/shared/services/*"],
+              "@store/*": ["src/app/shared/store/*"]
+            }
           }
-        };
+        ];
+
+        for (const dep of configsToAdd) {
+          const { key, value } = dep;
+          json[type][key] = value;
+          _context.logger.log("info", `${key} was added in tsconfig.json`);
+        }
+
+        _host.overwrite(fileName, JSON.stringify(json, null, 2));
+      } catch (error) {
+        _context.logger.log(
+          "warn",
+          `tsconfig.json can't be parsed (presence of comments perhaps!)
+    
+    Make sure to include the following in the tsconfig.json inside 'compilerOptions' :
+    
+    "resolveJsonModule":true,
+    "esModuleInterop":true,
+    "paths":{
+      "@api/*": ["src/app/shared/api/*"],
+      "@components/*": ["src/app/shared/components/*"],
+      "@globalUtils/*": ["src/app/shared/global-utils/*"],
+      "@guards/*": ["src/app/shared/guards/*"],
+      "@interfaces/*": ["src/app/shared/interfaces/*"],
+      "@services/*": ["src/app/shared/services/*"],
+      "@store/*": ["src/app/shared/store/*"]
+    }
+    
+    `
+        );
       }
-
-      if (json[type][projectName]?.["architect"]?.["build"]?.["options"]) {
-        json[type][projectName]["architect"]["build"]["options"]["outputPath"] = "dist";
-
-        json[type][projectName]["architect"]["build"]["options"]["assets"] = ["src/favicon.ico", "src/assets", "src/manifest.webmanifest", "src/web.config"];
-        json[type][projectName]["architect"]["build"]["options"]["styles"] = ["src/styles/styles.scss"];
-
-        json[type][projectName]["architect"]["build"]["options"]["serviceWorker"] = true;
-
-        json[type][projectName]["architect"]["build"]["options"]["ngswConfigPath"] = "ngsw-config.json";
-      }
-
-      _host.overwrite(fileName, JSON.stringify(json, null, 2));
     }
 
     return _host;
   };
 }
- */
 
 export interface MsalSchematicOption {
   srcDir: string;

@@ -1,4 +1,4 @@
-# Angular Azure Msal
+# Angular Custom template
 
 [![npm](https://img.shields.io/npm/v/@tchitos/angular-generate.svg?maxAge=2592000?style=flat-square)](https://www.npmjs.com/package/@tchitos/angular-generate)
 [![npm](https://img.shields.io/npm/dm/@tchitos/angular-generate.svg)](https://www.npmjs.com/package/@tchitos/angular-generate)

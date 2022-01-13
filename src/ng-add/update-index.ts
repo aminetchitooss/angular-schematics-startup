@@ -8,44 +8,43 @@ export function updateIndex(options: MsalSchematicOption) {
     URL = URL.slice(0, -1);
   }
   const IE_HTML = `
-  <div class="center column isIE"> <img src="assets/images/ie.png" alt="ie">
-    <div class="text">
-      <h2>Browser not supported</h2>
-      <h3>Looks like you're using an ancient browser. Please use Chrome, Edge or Safari for a better experience</h3>
-    </div>
-  </div> `;
+      <div class="center column isIE"> <img src="assets/images/ie.png" alt="ie">
+        <div class="text">
+          <h2>Browser not supported</h2>
+          <h3>Looks like you're using an ancient browser. Please use Chrome, Edge or Safari for a better experience</h3>
+        </div>
+      </div> `;
   const IE_HTML_wrapped = "`" + IE_HTML + "`";
   const Pending_HTML = `
-  <div class="center h-100 w-100">
-    <div class="loginForm">
-      <div class="center">
-        <div class="loginForm__logo">
-          <div class="div-pending"></div>
-        </div>
-      </div>
-      <div class="center column mb-12">
-        <div class="text-pending min mb-2"></div>
-        <div class="text-pending half"></div>
-      </div>
-      <div class="center">
-        <div class="max-size">
-          <div class="column al-start flex mb-12">
-            <div class="text-pending min mb-2"></div>
-            <div class="loginForm__mailDiv">
-              <div class="div-pending mb-4"></div>
+      <div class="center h-100 w-100">
+        <div class="loginForm">
+          <div class="center">
+            <div class="loginForm__logo">
+              <div class="div-pending"></div>
             </div>
           </div>
-          <div class="loginForm__login mb-12">
-            <div class="div-pending mb-4 rad"></div>
+          <div class="center column mb-12">
+            <div class="text-pending min mb-2"></div>
+            <div class="text-pending half"></div>
+          </div>
+          <div class="center">
+            <div class="max-size">
+              <div class="column al-start flex mb-12">
+                <div class="text-pending min mb-2"></div>
+                <div class="loginForm__mailDiv">
+                  <div class="div-pending mb-4"></div>
+                </div>
+              </div>
+              <div class="loginForm__login mb-12">
+                <div class="div-pending mb-4 rad"></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
   `;
   const Pending_HTML_wrapped = "`" + Pending_HTML + "`";
-  const updatedContent = `
-<!doctype html>
+  const updatedContent = `<!doctype html>
 <html lang="en">
 
 <head>
@@ -83,14 +82,15 @@ export function updateIndex(options: MsalSchematicOption) {
 <script>
   function setSkeleton() {
     const isIE = window.navigator.userAgent.indexOf('MSIE ') > -1 || window.navigator.userAgent.indexOf('Trident/') > -1;
-    if (isIE) {  
+    if (isIE) {
       document.getElementById('splash').innerHTML =${IE_HTML_wrapped}
     } else if (localStorage['save'] !== "true") {
       document.getElementById('splash').innerHTML =${Pending_HTML_wrapped}
     }
     document.getElementById('splash').style.opacity = "1"
   }
-</script>      
+</script>
+
 <body onload="setSkeleton()">
   <app-root></app-root>
   <div id="splash" class="splash">
@@ -189,9 +189,7 @@ export function updateIndex(options: MsalSchematicOption) {
   <noscript>Please enable JavaScript to continue using this application.</noscript>
 </body>
 
-</html>  
-  
-  `;
+</html>`;
   return (_host: Tree, _context: SchematicContext) => {
     return updateFile(_host, _context, "", updatedContent, options, options.srcDir + "index.html");
   };

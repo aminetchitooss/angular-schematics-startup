@@ -1,20 +1,20 @@
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
-import { DEFAULT_ROUTE, ROUTING_SETTING } from "@globalUtils/constants";
-import { UserGuard } from "@guards/user.guard";
-import { HomeComponent } from "./home.component";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { DEFAULT_ROUTE, ROUTING_SETTING } from '@globalUtils/constants';
+import { UserGuard } from '@guards/user.guard';
+import { HomeComponent } from './home.component';
 
 const routes: Routes = [
   {
-    path: "",
+    path: '',
     component: HomeComponent,
     children: [
-      { path: ROUTING_SETTING, loadChildren: () => import("./settings/settings.module").then((m) => m.SettingsModule), data: { preload: false } },
-      { path: "**", redirectTo: DEFAULT_ROUTE }
+      { path: ROUTING_SETTING, loadChildren: () => import('./settings/settings.module').then((m) => m.SettingsModule), data: { preload: false } },
+      { path: '**', redirectTo: DEFAULT_ROUTE }
     ],
     canActivate: [UserGuard]
   },
-  { path: "**", redirectTo: "" }
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

@@ -43,7 +43,6 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
-
 `;
 
 export function updateAppRouting(options: MsalSchematicOption) {

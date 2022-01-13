@@ -117,8 +117,6 @@ export function MSALInterceptorConfigFactory(configService: App_Config): MsalInt
   bootstrap: [AppComponent, MsalRedirectComponent]
 })
 export class AppModule {}
-
-
 `;
 
 export function updateAppModule(options: MsalSchematicOption) {

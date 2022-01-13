@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavigationComponent } from './navigation.component';
-import { ThemeChangerComponent } from './profil/theme-changer/theme-changer.component';
 import { ProfilComponent } from './profil/profil.component';
 import { RoutesComponent } from './routes/routes.component';
 import { UndersideNavComponent } from './underside-nav/underside-nav.component';
@@ -22,7 +21,7 @@ import { MobileRoutesComponent } from './mobile-routes/mobile-routes.component';
 import { ProfilInfoPipe } from './profil-info.pipe';
 
 @NgModule({
-  declarations: [NavigationComponent, ThemeChangerComponent, ProfilComponent, RoutesComponent, UndersideNavComponent, RouteLinkComponent, MobileRoutesComponent, ProfilInfoPipe],
+  declarations: [NavigationComponent, ProfilComponent, RoutesComponent, UndersideNavComponent, RouteLinkComponent, MobileRoutesComponent, ProfilInfoPipe],
   imports: [
     CommonModule,
     MatToolbarModule,

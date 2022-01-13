@@ -1,5 +1,3 @@
-@use "src/styles/breakpoints.scss" as var;
-
 @mixin placeAnimatedDot($top: 8%, $left: 80%) {
   .image-circle {
     &:after {
@@ -75,15 +73,6 @@ picture {
     }
   }
   @include placeAnimatedDot();
-}
-
-@media (max-height: var.$maxHeightSmallScreen) {
-  theme-changer {
-    position: absolute;
-    right: 15px;
-    top: 15px;
-    margin: 0 !important;
-  }
 }
 
 @mixin resizePicture($size: 140px) {

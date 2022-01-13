@@ -1,6 +1,6 @@
 {
   "name": "@tchitos/angular-generate",
-  "version": "1.0.9",
+  "version": "1.0.12",
   "description": "A schematic that creates a full custom project with preconfigured (Azure msal login workflow, Pwa, material custom palette, Picture with Auth module, Svg Module, Api integration, cache mechanism )",
   "author": {
     "name": "tchitos"

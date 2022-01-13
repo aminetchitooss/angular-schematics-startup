@@ -15,8 +15,8 @@ export function ngAdd(options: MsalSchematicOption): Rule {
     updateIndex(options),
     updateAppModule(options),
     updateAppRouting(options),
-    updateTsConfig(),
-    updateAngularConfig(),
+    // updateTsConfig(),
+    // updateAngularConfig(),
 
     mergeWith(
       apply(url("./files"), [
@@ -80,108 +80,108 @@ function addPackageJsonDependency() {
   };
 }
 
-function updateTsConfig() {
-  return (_host: Tree, _context: SchematicContext) => {
-    const fileName = "tsconfig.json";
-    if (_host.exists(fileName)) {
-      const jsonStr = _host.read(fileName)!.toString("utf-8");
-      const json = JSON.parse(jsonStr);
+// function updateTsConfig() {
+//   return (_host: Tree, _context: SchematicContext) => {
+//     const fileName = "tsconfig.json";
+//     if (_host.exists(fileName)) {
+//       const jsonStr = _host.read(fileName)!.toString("utf-8");
+//       const json = JSON.parse(jsonStr);
 
-      const type = "compilerOptions";
-      if (!json[type]) {
-        json[type] = {};
-      }
+//       const type = "compilerOptions";
+//       if (!json[type]) {
+//         json[type] = {};
+//       }
 
-      const configsToAdd = [
-        { key: "resolveJsonModule", value: true },
-        { key: "esModuleInterop", value: true },
-        {
-          key: "paths",
-          value: {
-            "@api/*": ["src/app/shared/api/*"],
-            "@components/*": ["src/app/shared/components/*"],
-            "@globalUtils/*": ["src/app/shared/global-utils/*"],
-            "@guards/*": ["src/app/shared/guards/*"],
-            "@interfaces/*": ["src/app/shared/interfaces/*"],
-            "@services/*": ["src/app/shared/services/*"],
-            "@store/*": ["src/app/shared/store/*"]
-          }
-        }
-      ];
+//       const configsToAdd = [
+//         { key: "resolveJsonModule", value: true },
+//         { key: "esModuleInterop", value: true },
+//         {
+//           key: "paths",
+//           value: {
+//             "@api/*": ["src/app/shared/api/*"],
+//             "@components/*": ["src/app/shared/components/*"],
+//             "@globalUtils/*": ["src/app/shared/global-utils/*"],
+//             "@guards/*": ["src/app/shared/guards/*"],
+//             "@interfaces/*": ["src/app/shared/interfaces/*"],
+//             "@services/*": ["src/app/shared/services/*"],
+//             "@store/*": ["src/app/shared/store/*"]
+//           }
+//         }
+//       ];
 
-      for (const dep of configsToAdd) {
-        const { key, value } = dep;
-        json[type][key] = value;
-        _context.logger.log("info", `${key} was added in tsconfig.json`);
-      }
+//       for (const dep of configsToAdd) {
+//         const { key, value } = dep;
+//         json[type][key] = value;
+//         _context.logger.log("info", `${key} was added in tsconfig.json`);
+//       }
 
-      _host.overwrite(fileName, JSON.stringify(json, null, 2));
-    }
+//       _host.overwrite(fileName, JSON.stringify(json, null, 2));
+//     }
 
-    return _host;
-  };
-}
+//     return _host;
+//   };
+// }
 
-function updateAngularConfig() {
-  return (_host: Tree, _context: SchematicContext) => {
-    const fileName = "angular.json";
-    if (_host.exists(fileName)) {
-      const jsonStr = _host.read(fileName)!.toString("utf-8");
-      const json = JSON.parse(jsonStr);
+// function updateAngularConfig() {
+//   return (_host: Tree, _context: SchematicContext) => {
+//     const fileName = "angular.json";
+//     if (_host.exists(fileName)) {
+//       const jsonStr = _host.read(fileName)!.toString("utf-8");
+//       const json = JSON.parse(jsonStr);
 
-      const type = "projects";
-      if (!json[type]) {
-        return _host;
-      }
-      const projectName = Object.keys(json[type])[0];
-      if (!projectName) return _host;
+//       const type = "projects";
+//       if (!json[type]) {
+//         return _host;
+//       }
+//       const projectName = Object.keys(json[type])[0];
+//       if (!projectName) return _host;
 
-      json[type][projectName]["prefix"] = "";
-      const schematicsOld = json[type][projectName]["schematics"];
+//       json[type][projectName]["prefix"] = "";
+//       const schematicsOld = json[type][projectName]["schematics"];
 
-      if (!schematicsOld) {
-        schematicsOld["@schematics/angular:component"]["changeDetection"] = "OnPush";
-        schematicsOld["@schematics/angular:component"]["skipTests"] = true;
-        json[type][projectName]["schematics"] = {
-          ...schematicsOld,
-          "@schematics/angular:application": {
-            strict: true
-          },
-          "@schematics/angular:class": {
-            skipTests: true
-          },
-          "@schematics/angular:guard": {
-            skipTests: true
-          },
-          "@schematics/angular:directive": {
-            skipTests: true
-          },
-          "@schematics/angular:pipe": {
-            skipTests: true
-          },
-          "@schematics/angular:service": {
-            skipTests: true
-          }
-        };
-      }
+//       if (!schematicsOld) {
+//         schematicsOld["@schematics/angular:component"]["changeDetection"] = "OnPush";
+//         schematicsOld["@schematics/angular:component"]["skipTests"] = true;
+//         json[type][projectName]["schematics"] = {
+//           ...schematicsOld,
+//           "@schematics/angular:application": {
+//             strict: true
+//           },
+//           "@schematics/angular:class": {
+//             skipTests: true
+//           },
+//           "@schematics/angular:guard": {
+//             skipTests: true
+//           },
+//           "@schematics/angular:directive": {
+//             skipTests: true
+//           },
+//           "@schematics/angular:pipe": {
+//             skipTests: true
+//           },
+//           "@schematics/angular:service": {
+//             skipTests: true
+//           }
+//         };
+//       }
 
-      if (json[type][projectName]?.["architect"]?.["build"]?.["options"]) {
-        json[type][projectName]["architect"]["build"]["options"]["outputPath"] = "dist";
+//       if (json[type][projectName]?.["architect"]?.["build"]?.["options"]) {
+//         json[type][projectName]["architect"]["build"]["options"]["outputPath"] = "dist";
 
-        json[type][projectName]["architect"]["build"]["options"]["assets"] = ["src/favicon.ico", "src/assets", "src/manifest.webmanifest", "src/web.config"];
-        json[type][projectName]["architect"]["build"]["options"]["styles"] = ["src/styles/styles.scss"];
+//         json[type][projectName]["architect"]["build"]["options"]["assets"] = ["src/favicon.ico", "src/assets", "src/manifest.webmanifest", "src/web.config"];
+//         json[type][projectName]["architect"]["build"]["options"]["styles"] = ["src/styles/styles.scss"];
 
-        json[type][projectName]["architect"]["build"]["options"]["serviceWorker"] = true;
+//         json[type][projectName]["architect"]["build"]["options"]["serviceWorker"] = true;
 
-        json[type][projectName]["architect"]["build"]["options"]["ngswConfigPath"] = "ngsw-config.json";
-      }
+//         json[type][projectName]["architect"]["build"]["options"]["ngswConfigPath"] = "ngsw-config.json";
+//       }
 
-      _host.overwrite(fileName, JSON.stringify(json, null, 2));
-    }
+//       _host.overwrite(fileName, JSON.stringify(json, null, 2));
+//     }
 
-    return _host;
-  };
-}
+//     return _host;
+//   };
+// }
 
 export interface MsalSchematicOption {
   srcDir: string;

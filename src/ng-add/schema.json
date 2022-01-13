@@ -14,10 +14,12 @@
     },
     "clientId": {
       "type": "string",
+      "default": "cccccc",
       "x-prompt": "What is your clientId?"
     },
     "tenantId": {
       "type": "string",
+      "default": "ttttttt",
       "x-prompt": "What is your tenantId?"
     },
     "projectName": {

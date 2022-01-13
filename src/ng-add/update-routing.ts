@@ -2,7 +2,8 @@ import { SchematicContext, Tree } from "@angular-devkit/schematics";
 import { MsalSchematicOption } from ".";
 import { updateFile } from "./update-file";
 
-const updatdContent = `import { NgModule } from '@angular/core';
+const updatdContent = `import { PredictivePreloadingStrategy } from './app.preloadStrategy';
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MsalGuard } from '@azure/msal-angular';
 import { BrowserUtils } from '@azure/msal-browser';
@@ -33,6 +34,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
+      preloadingStrategy: PredictivePreloadingStrategy,
       useHash: true,
       // Don't perform initial navigation in iframes or popups
       initialNavigation: !BrowserUtils.isInIframe() && !BrowserUtils.isInPopup() ? 'enabled' : 'disabled' // Remove this line to use Angular Universal

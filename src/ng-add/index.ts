@@ -53,7 +53,7 @@ function addPackageJsonDependency() {
       }
 
       const dependenciesToInstall = [
-        { globalPkg: "rxjs", version: "~6.6.7" },
+        // { globalPkg: "rxjs", version: "~6.6.7" },
         { globalPkg: "@angular/cdk", version: "latest" },
         { globalPkg: "@angular/material", version: "latest" },
         { globalPkg: "@angular/service-worker", version: "latest" },

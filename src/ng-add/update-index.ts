@@ -3,6 +3,10 @@ import { MsalSchematicOption } from ".";
 import { updateFile } from "./update-file";
 
 export function updateIndex(options: MsalSchematicOption) {
+  let URL = options.url.split("http://").join("").split("https://").join("");
+  if (URL.slice(-1) == "/") {
+    URL = URL.slice(0, -1);
+  }
   const IE_HTML = `
   <div class="center column isIE"> <img src="assets/images/ie.png" alt="ie">
     <div class="text">
@@ -62,13 +66,13 @@ export function updateIndex(options: MsalSchematicOption) {
   <meta property="og:title" content="${options.projectName}">
   <meta property="og:site_name" content="${options.projectName}">
   <meta property="og:description" content="${options.description}">
-  <meta property="og:image" content="https://${options.url}/assets/images/logo.png">
+  <meta property="og:image" content="https://${URL}/assets/images/logo.png">
   <meta property="og:type" content="website" />
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${options.projectName}">
   <meta name="twitter:description" content="${options.description}">
-  <meta name="twitter:image" content="https://${options.url}/assets/images/logo.png">
+  <meta name="twitter:image" content="https://${URL}/assets/images/logo.png">
 
   <link rel="apple-touch-icon" href="assets/images/logo.png">
 

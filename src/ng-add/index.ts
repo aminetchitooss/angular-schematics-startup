@@ -25,7 +25,7 @@ export function ngAdd(options: MsalSchematicOption): Rule {
           tenantId: options.tenantId,
           projectName: options.projectName,
           description: options.description,
-          url: options.url.split("http://").join("").split("https://").join("")
+          url: options.url
         }),
         move(options.srcDir)
       ])

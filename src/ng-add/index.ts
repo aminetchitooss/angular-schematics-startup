@@ -25,7 +25,8 @@ export function ngAdd(options: MsalSchematicOption): Rule {
           tenantId: options.tenantId,
           projectName: options.projectName,
           description: options.description,
-          url: options.url
+          url: options.url,
+          apiUrl: options.apiUrl,
         }),
         move(options.srcDir)
       ])
@@ -215,5 +216,6 @@ export interface MsalSchematicOption {
   projectName: string;
   description: string;
   url: string;
+  apiUrl: string;
   [key: string]: any;
 }

@@ -5,7 +5,7 @@ export const projectVersion = appSettings.version;
 
 type environement = 'PRD' | 'PPR' | 'TST' | 'DEV';
 
-const CURRENT_ENV: environement = appSettings.environment as environement;
+export const CURRENT_ENV: environement = appSettings.environment as environement;
 
 export function GetRedirectUri(): string {
   const starter = window.location.origin;
@@ -21,10 +21,10 @@ export function GetRedirectUri(): string {
   }
 }
 
-const URL_API_DEV = 'https://digitalfactory-api.servier.com/onsite/tst';
-const URL_API_TEST = 'https://digitalfactory-api.servier.com/onsite/tst';
-const URL_API_PPR = 'https://digitalfactory-api.servier.com/onsite/ppr';
-const URL_API_PROD = 'https://digitalfactory-api.servier.com/onsite';
+const URL_API_DEV = '<%= apiUrl %>/tst';
+const URL_API_TEST = '<%= apiUrl %>/tst';
+const URL_API_PPR = '<%= apiUrl %>/ppr';
+const URL_API_PROD = '<%= apiUrl %>';
 
 export function getBaseUrl(): string {
   switch (CURRENT_ENV) {
@@ -39,5 +39,3 @@ export function getBaseUrl(): string {
   }
 }
 
-const tenantId = 'cc0a4ff6-9454-4e4b-881b-85f448dee2e3';
-const clientId = 'f444ccf2-d655-421a-a619-718b541c8d2b';

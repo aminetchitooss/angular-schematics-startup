@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   version = projectVersion;
   loginDisplay: boolean | null = null;
 
-  userNameCtrl = new FormControl('amine.tchita.infogene@servier.com', [Validators.required]);
+  userNameCtrl = new FormControl('', [Validators.required]);
   nameChangeSub: Subscription = new Subscription();
 
   constructor(

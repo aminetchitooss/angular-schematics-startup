@@ -41,7 +41,13 @@
       "default": "https://myApp.servier.com",
       "minLength": 10,
       "x-prompt": "What is your project website ?"
+    },
+    "apiUrl": {
+      "type": "string",
+      "default": "https://digitalfactory-api.servier.com/myApi",
+      "minLength": 10,
+      "x-prompt": "What is your Api url ?"
     }
   },
-  "required": ["clientId", "tenantId", "projectName", "description", "url"]
+  "required": ["clientId", "tenantId", "projectName", "description", "url", "apiUrl"]
 }

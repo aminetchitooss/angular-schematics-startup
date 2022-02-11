@@ -1,23 +1,23 @@
-import { Injectable } from "@angular/core";
-import { PreloadingStrategy, Route } from "@angular/router";
-import { EMPTY, Observable } from "rxjs";
-import { mergeMap } from "rxjs/operators";
-import { preloadOption, PreloadService } from "./shared/services/preload.service";
+import { Injectable } from '@angular/core';
+import { PreloadingStrategy, Route } from '@angular/router';
+import { EMPTY, Observable } from 'rxjs';
+import { mergeMap } from 'rxjs/operators';
+import { preloadOption, PreloadService } from './shared/services/preload.service';
 
 function isGoodNetwork(): boolean {
   const browsernavigator: any = navigator;
   const conn: any = browsernavigator.connection;
   if (conn) {
     if (conn.saveData) return false;
-    const connectionsToAvoid = ["slow-2g", "2g", "slow-3g", "3g"];
-    const effectiveType = conn.effectiveType || "";
+    const connectionsToAvoid = ['slow-2g', '2g', 'slow-3g', '3g'];
+    const effectiveType = conn.effectiveType || '';
     if (connectionsToAvoid.some((c) => c == effectiveType)) return false;
   }
   return true;
 }
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
   deps: [PreloadService]
 })
 export class PredictivePreloadingStrategy implements PreloadingStrategy {
@@ -26,7 +26,7 @@ export class PredictivePreloadingStrategy implements PreloadingStrategy {
     this.preloadOnDemand$ = this.preloadService.state$;
   }
   preload(route: Route, load: Function): Observable<any> {
-    if (!route?.data || route?.data?.["preload"]) return isGoodNetwork() ? load() : EMPTY;
+    if (!route?.data || route?.data?.['preload']) return isGoodNetwork() ? load() : EMPTY;
 
     return this.preloadOnDemand$.pipe(
       mergeMap((preloadOptions) => {

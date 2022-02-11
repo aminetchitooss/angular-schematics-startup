@@ -4,8 +4,9 @@ import { updateFile } from "./update-file";
 
 const appHtmlUpdatedContent = `
 <ng-container *ngIf="!isIE">
-    <router-outlet *ngIf="!isIframe"></router-outlet>
+  <router-outlet *ngIf="!isIframe"></router-outlet>
 </ng-container>
+
 `;
 
 export function updateAppHtml(options: MsalSchematicOption) {
@@ -88,7 +89,6 @@ export class AppComponent implements OnInit {
     this._destroying$.complete();
   }
 }
-
 `;
 
 export function updateAppTs(options: MsalSchematicOption) {

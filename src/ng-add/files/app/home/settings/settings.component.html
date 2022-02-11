@@ -1,6 +1,6 @@
 <ng-container *ngIf="_dataService.isMobile$ | async as mobileLayout; else MidScreenOrHigher">
-    <construction msg="VIEW SETTING__phone"></construction>
+  <construction msg="VIEW SETTING__phone"></construction>
 </ng-container>
 <ng-template #MidScreenOrHigher>
-    <construction msg="VIEW SETTING__desktop"></construction>
+  <construction msg="VIEW SETTING__desktop"></construction>
 </ng-template>

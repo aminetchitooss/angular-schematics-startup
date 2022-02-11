@@ -1,123 +1,125 @@
-<ng-container *ngIf="loginDisplay==null || loginDisplay==true ;">
-    <div class="splash">
-        <div class="flex between desktop h-100 w-100">
-            <div class="nav h-100">
-                <div class="flex splash-profile w-100 between">
-                    <div class="icon-pending medium"></div>
-                    <div class="splash-profile-name flex column al-start">
-                        <div class="text-pending half mb-2"></div>
-                        <div class="text-pending full"></div>
-                    </div>
-                </div>
-                <div class="flex column">
-                    <div class="splash-link flex">
-                        <div class="icon-pending small"></div>
-                        <div class="text-pending full"></div>
-                    </div>
-                    <div class="splash-link flex">
-                        <div class="icon-pending small"></div>
-                        <div class="text-pending full"></div>
-                    </div>
-                    <div class="splash-link flex">
-                        <div class="icon-pending small"></div>
-                        <div class="text-pending full"></div>
-                    </div>
-                    <div class="splash-link flex">
-                        <div class="icon-pending small"></div>
-                        <div class="text-pending full"></div>
-                    </div>
-                </div>
-                <div class="splash-footer w-100">
-                    <div class="splash-link logout flex">
-                        <div class="icon-pending small"></div>
-                        <div class="text-pending half"></div>
-                    </div>
-                    <div class="splash-link sponsor center">
-                        <div class="text-pending half"></div>
-                        <div class="text-pending half"></div>
-                    </div>
-                    <div class="text-pending half"></div>
-                </div>
-            </div>
-            <div class="splash__content flex column h-100 w-100">
-                <div class="splash-header  flex w-100">
-                    <div class="icon-pending small"></div>
-                    <div class="text-pending title"></div>
-                </div>
-                <div class="splash-result flex column al-start h-100 w-100">
-                    <div class="text-pending title mb-2"></div>
-                    <div class="text-pending half mb-4"></div>
-                </div>
-            </div>
+<ng-container *ngIf="loginDisplay == null || loginDisplay == true">
+  <div class="splash">
+    <div class="flex between desktop h-100 w-100">
+      <div class="nav h-100">
+        <div class="flex splash-profile w-100 between">
+          <div class="icon-pending medium"></div>
+          <div class="splash-profile-name flex column al-start">
+            <div class="text-pending half mb-2"></div>
+            <div class="text-pending full"></div>
+          </div>
         </div>
-        <div class="center al-start mobile h-100 w-100">
-            <div class="splash__content fullWidth">
-                <div class="flex splash-profile w-100 between mb-4">
-                    <div class="icon-pending medium"></div>
-                    <div class="splash-profile-name flex column al-start">
-                        <div class="text-pending half mb-2"></div>
-                        <div class="text-pending full"></div>
-                    </div>
-                </div>
-
-                <div class="splash-header frame flex w-100 mb-4">
-                    <div class="icon-pending small"></div>
-                    <div class="flex column">
-                        <div class="text-pending title mb-2"></div>
-                        <div class="text-pending title"></div>
-                    </div>
-                </div>
-                <div class="splash-header frame flex w-100 mb-4">
-                    <div class="icon-pending small"></div>
-                    <div class="flex column">
-                        <div class="text-pending title mb-2"></div>
-                        <div class="text-pending title"></div>
-                    </div>
-                </div>
-                <div class="splash-header frame flex w-100 mb-4">
-                    <div class="icon-pending small"></div>
-                    <div class="flex column">
-                        <div class="text-pending title mb-2"></div>
-                        <div class="text-pending title"></div>
-                    </div>
-                </div>
-                <div class="splash-header frame flex w-100 mb-4">
-                    <div class="icon-pending small"></div>
-                    <div class="flex column">
-                        <div class="text-pending title mb-2"></div>
-                        <div class="text-pending title"></div>
-                    </div>
-                </div>
-            </div>
+        <div class="flex column">
+          <div class="splash-link flex">
+            <div class="icon-pending small"></div>
+            <div class="text-pending full"></div>
+          </div>
+          <div class="splash-link flex">
+            <div class="icon-pending small"></div>
+            <div class="text-pending full"></div>
+          </div>
+          <div class="splash-link flex">
+            <div class="icon-pending small"></div>
+            <div class="text-pending full"></div>
+          </div>
+          <div class="splash-link flex">
+            <div class="icon-pending small"></div>
+            <div class="text-pending full"></div>
+          </div>
         </div>
+        <div class="splash-footer w-100">
+          <div class="splash-link logout flex">
+            <div class="icon-pending small"></div>
+            <div class="text-pending half"></div>
+          </div>
+          <div class="splash-link sponsor center">
+            <div class="text-pending half"></div>
+            <div class="text-pending half"></div>
+          </div>
+          <div class="text-pending half"></div>
+        </div>
+      </div>
+      <div class="splash__content flex column h-100 w-100">
+        <div class="splash-header flex w-100">
+          <div class="icon-pending small"></div>
+          <div class="text-pending title"></div>
+        </div>
+        <div class="splash-result flex column al-start h-100 w-100">
+          <div class="text-pending title mb-2"></div>
+          <div class="text-pending half mb-4"></div>
+        </div>
+      </div>
     </div>
+    <div class="center al-start mobile h-100 w-100">
+      <div class="splash__content fullWidth">
+        <div class="flex splash-profile w-100 between mb-4">
+          <div class="icon-pending medium"></div>
+          <div class="splash-profile-name flex column al-start">
+            <div class="text-pending half mb-2"></div>
+            <div class="text-pending full"></div>
+          </div>
+        </div>
+
+        <div class="splash-header frame flex w-100 mb-4">
+          <div class="icon-pending small"></div>
+          <div class="flex column">
+            <div class="text-pending title mb-2"></div>
+            <div class="text-pending title"></div>
+          </div>
+        </div>
+        <div class="splash-header frame flex w-100 mb-4">
+          <div class="icon-pending small"></div>
+          <div class="flex column">
+            <div class="text-pending title mb-2"></div>
+            <div class="text-pending title"></div>
+          </div>
+        </div>
+        <div class="splash-header frame flex w-100 mb-4">
+          <div class="icon-pending small"></div>
+          <div class="flex column">
+            <div class="text-pending title mb-2"></div>
+            <div class="text-pending title"></div>
+          </div>
+        </div>
+        <div class="splash-header frame flex w-100 mb-4">
+          <div class="icon-pending small"></div>
+          <div class="flex column">
+            <div class="text-pending title mb-2"></div>
+            <div class="text-pending title"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </ng-container>
 
-<form *ngIf="loginDisplay==false" class="loginFrame h-100 w-100" (ngSubmit)="connect()">
+<form *ngIf="loginDisplay == false" class="loginFrame h-100 w-100" (ngSubmit)="connect()">
+  <div class="form center column h-100 w-100">
+    <img class="logo" src="assets/images/logo.png" alt="logo" />
+    <p class="description">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi, possimus.</p>
 
-    <div class="form center column h-100 w-100">
-        <img class="logo" src="assets/images/logo.png" alt="logo">
-        <p class="description"> Création des cci news Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Eligendi, possimus.</p>
+    <mat-label>Servier e-mail<sup>*</sup>: </mat-label>
+    <mat-form-field class="login mb-1" appearance="outline">
+      <input placeholder="email" type="email" matInput [formControl]="userNameCtrl" />
+      <mat-error *ngIf="userNameCtrl.hasError('required')"> E-mail <strong>obligatoire</strong> </mat-error>
+      <mat-error *ngIf="userNameCtrl.hasError('wrongMail')"> Connectez-vous avec une adresse e-mail<strong> Servier ou Biogaran</strong> </mat-error>
+    </mat-form-field>
 
-        <mat-label>Servier e-mail<sup>*</sup>: </mat-label>
-        <mat-form-field class="login" appearance="outline">
-            <input type="email" matInput [formControl]="userNameCtrl" />
-            <mat-error *ngIf="userNameCtrl.hasError('required')">
-                E-mail <strong>obligatoire</strong>
-            </mat-error>
-            <mat-error *ngIf="userNameCtrl.hasError('wrongMail')">
-                Connectez-vous avec une adresse e-mail<strong> Servier ou Biogaran</strong>
-            </mat-error>
-        </mat-form-field>
-
-        <button aria-label="login azure" class="btnEnabledWithCondition minRad" data-cy="loginBtn" matRipple
-            [matRippleDisabled]="userNameCtrl.invalid" [ngClass]="{ 'enabled':userNameCtrl.valid}">Connexion</button>
-        <div class="poweredBy flex">
-            <svg-icon class="icon-primary" src="logo_servier"></svg-icon>
-            <svg-icon src="logo_df"></svg-icon>
-        </div>
+    <button
+      aria-label="login azure"
+      class="btnEnabledWithCondition minRad"
+      data-cy="loginBtn"
+      matRipple
+      [matRippleDisabled]="userNameCtrl.invalid"
+      [ngClass]="{ enabled: userNameCtrl.valid }"
+    >
+      Connexion
+    </button>
+    <div class="poweredBy flex">
+      <svg-icon class="icon-primary" src="logo_servier"></svg-icon>
+      <svg-icon src="logo_df"></svg-icon>
     </div>
-    <img class="h-100 bg" src="assets/images/login-bg.png">
-    <div class="footer version" attr.data-version="v_{{version}}"></div>
+  </div>
+  <img class="h-100 bg" src="assets/images/login-bg.png" alt="bg" />
+  <div class="footer version" attr.data-version="v_{{ version }}"></div>
 </form>

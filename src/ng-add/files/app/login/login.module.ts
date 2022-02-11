@@ -10,9 +10,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatRippleModule } from '@angular/material/core';
 import { SvgIconModule } from '@components/svg-icon/svg-icon.module';
+import { PostAuthLoadingComponent } from './post-auth-loading/post-auth-loading.component';
 
 @NgModule({
-  declarations: [LoginComponent, FailedLoginComponent],
+  declarations: [LoginComponent, FailedLoginComponent, PostAuthLoadingComponent],
   imports: [CommonModule, LoginRoutingModule, MatFormFieldModule, MatButtonModule, MatInputModule, MatRippleModule, FormsModule, ReactiveFormsModule, SvgIconModule]
 })
 export class LoginModule {}

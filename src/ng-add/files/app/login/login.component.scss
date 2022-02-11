@@ -8,23 +8,32 @@
 }
 
 .logo {
-  height: 50px;
-  margin-top: 1rem;
-  margin-bottom: 60px;
+  height: 110px;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 1.625rem;
+  line-height: 2rem;
+  margin-bottom: 7px;
 }
 
 .description {
-  margin-bottom: 2rem;
-  line-height: 22px;
-  color: var(--primary-color);
+  color: var(--gray-500);
+  font-size: 1.0625rem;
+  line-height: 1.25rem;
+}
+
+.elixir {
+  margin-bottom: 50px;
 }
 
 mat-label {
-  font-weight: 500;
-  font-size: 0.9375rem;
-  line-height: 24px;
-  margin-bottom: 0.5rem;
-  min-height: 29px;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1rem;
+  margin-bottom: 0.25rem;
 }
 
 .login {
@@ -35,21 +44,12 @@ mat-label {
 mat-label,
 .login,
 button {
-  width: 92%;
-  max-width: 400px;
+  width: 100%;
+  max-width: 380px;
 }
 
 .poweredBy {
-  margin-top: 40px;
-  height: 2rem;
-
-  svg-icon {
-    width: 96px;
-    &:last-child {
-      width: 144px;
-      margin-left: 1rem;
-    }
-  }
+  margin-top: 65px;
 }
 
 .footer {
@@ -70,12 +70,12 @@ button {
 
   .form {
     box-shadow: var(--shadow);
-    width: 40%;
+    width: 33.33%;
     position: relative;
   }
 
   .bg {
     display: block;
-    width: 60%;
+    width: 66.66%;
   }
 }

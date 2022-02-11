@@ -1,5 +1,4 @@
-<a class="link flex" (mouseenter)="startPreload(link.route)" [routerLink]="[link.route]"
-    routerLinkActive="router-link-active">
-    <svg-icon [src]="link.src"></svg-icon>
-    {{link.title}}
+<a class="link flex" (mouseenter)="startPreload(link.route)" [routerLink]="[link.route]" routerLinkActive="router-link-active">
+  <svg-icon class="flex" [src]="link.src"></svg-icon>
+  {{ link.title }}
 </a>

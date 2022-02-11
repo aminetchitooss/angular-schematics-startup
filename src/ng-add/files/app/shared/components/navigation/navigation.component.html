@@ -1,23 +1,28 @@
 <mat-sidenav-container id="dashContainer" class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false"
+  >
     <profil [user]="user" class="profil"></profil>
     <ng-container>
-      <mat-nav-list *ngIf='isHandset$ | async as mobile ;else navbarDesktop'>
-        <mobile-routes [user]="user" (click)="toggleNavOnMobile(drawer)"></mobile-routes>
-        <underside-nav (closeDrawer)="toggleNavOnMobile(drawer)"></underside-nav>
+      <mat-nav-list class="flex column between" *ngIf="isHandset$ | async as mobile; else navbarDesktop">
+        <routes class="w-100" [user]="user" (click)="toggleNavOnMobile(drawer)"></routes>
+        <underside-nav class="center column w-100" (closeDrawer)="toggleNavOnMobile(drawer)"></underside-nav>
       </mat-nav-list>
       <ng-template #navbarDesktop>
-        <mat-nav-list>
-          <routes [user]="user" (click)="toggleNavOnMobile(drawer)"></routes>
-          <underside-nav (closeDrawer)="toggleNavOnMobile(drawer)"></underside-nav>
+        <mat-nav-list class="flex column between">
+          <routes class="w-100" [user]="user" (click)="toggleNavOnMobile(drawer)"></routes>
+          <underside-nav class="center column w-100" (closeDrawer)="toggleNavOnMobile(drawer)"></underside-nav>
         </mat-nav-list>
       </ng-template>
     </ng-container>
   </mat-sidenav>
-  <mat-sidenav-content>
-    <div *ngIf="isHandset$ | async" class="icon-btn center" matRipple aria-label="Toggle sidenav"
-      (click)="drawer.toggle()">
+  <mat-sidenav-content class="flex between column al-start">
+    <div *ngIf="isHandset$ | async" class="icon-btn center" matRipple aria-label="Toggle sidenav" (click)="drawer.toggle()">
       <svg-icon class="burgerMenu" src="menu"></svg-icon>
     </div>
     <ng-content></ng-content>

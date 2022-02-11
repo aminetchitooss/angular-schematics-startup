@@ -1,18 +1,12 @@
 @use "src/styles/breakpoints.scss" as var;
 
-:host {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
 a {
   $pad: 6px;
-  text-decoration: none;
   cursor: pointer;
   width: 100%;
+  text-decoration: underline;
   &.logout-btn {
+    text-decoration: none;
     margin-bottom: 20px;
     padding-left: 12px;
   }
@@ -22,7 +16,7 @@ a {
     width: 28px;
     background-color: var(--gray-50);
     border-radius: 7px;
-    margin-right: 0.5rem;
+    margin-right: 1rem;
   }
 
   svg-icon {

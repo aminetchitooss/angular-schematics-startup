@@ -42,7 +42,7 @@
   width: 25%;
 }
 .w-50 {
-  width: 50% !important;
+  width: 50%;
 }
 .w-100 {
   width: 100%;
@@ -51,25 +51,22 @@
   height: 100%;
 }
 
-.mb-1 {
-  margin-bottom: 0.25rem;
-}
-.mb-2 {
-  margin-bottom: 0.5rem;
-}
-.mb-4 {
-  margin-bottom: 1rem;
-}
-.mb-8 {
-  margin-bottom: 2rem;
+$sizes: (
+  "1": 0.25rem,
+  "2": 0.5rem,
+  "4": 1rem,
+  "8": 2rem
+);
+
+@each $label, $size in $sizes {
+  .mb-#{$label} {
+    margin-bottom: $size;
+  }
+  .mr-#{$label} {
+    margin-right: $size;
+  }
 }
 
-.mr-1 {
-  margin-right: 0.25rem;
-}
-.mr-2 {
-  margin-right: 0.5rem;
-}
 .px-4 {
   padding: 0 1rem;
 }

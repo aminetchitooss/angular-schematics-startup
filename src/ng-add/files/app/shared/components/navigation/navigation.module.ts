@@ -13,15 +13,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 
 import { FormsModule } from '@angular/forms';
-import { PictureModule } from '../picture/picture.module';
 import { RouterModule } from '@angular/router';
-import { SvgIconModule } from '../svg-icon/svg-icon.module';
 import { MatRippleModule } from '@angular/material/core';
-import { MobileRoutesComponent } from './mobile-routes/mobile-routes.component';
+import { SvgIconModule } from '@components/svg-icon/svg-icon.module';
+import { PictureModule } from '@components/picture/picture.module';
 import { ProfilInfoPipe } from './profil-info.pipe';
 
 @NgModule({
-  declarations: [NavigationComponent, ProfilComponent, RoutesComponent, UndersideNavComponent, RouteLinkComponent, MobileRoutesComponent, ProfilInfoPipe],
+  declarations: [NavigationComponent, ProfilComponent, RoutesComponent, UndersideNavComponent, RouteLinkComponent, ProfilInfoPipe],
   imports: [
     CommonModule,
     MatToolbarModule,

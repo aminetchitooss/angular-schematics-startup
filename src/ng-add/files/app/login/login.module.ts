@@ -11,9 +11,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatRippleModule } from '@angular/material/core';
 import { SvgIconModule } from '@components/svg-icon/svg-icon.module';
 import { PostAuthLoadingComponent } from './post-auth-loading/post-auth-loading.component';
+import { SponsorModule } from '@components/sponsor/sponsor.module';
 
 @NgModule({
   declarations: [LoginComponent, FailedLoginComponent, PostAuthLoadingComponent],
-  imports: [CommonModule, LoginRoutingModule, MatFormFieldModule, MatButtonModule, MatInputModule, MatRippleModule, FormsModule, ReactiveFormsModule, SvgIconModule]
+  imports: [CommonModule, LoginRoutingModule, MatFormFieldModule, MatButtonModule, MatInputModule, MatRippleModule, FormsModule, ReactiveFormsModule, SvgIconModule, SponsorModule]
 })
 export class LoginModule {}

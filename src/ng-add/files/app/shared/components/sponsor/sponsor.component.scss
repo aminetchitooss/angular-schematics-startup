@@ -1,0 +1,11 @@
+.flex {
+  height: 2rem;
+
+  svg-icon {
+    width: 96px;
+    &:last-child {
+      width: 144px;
+      margin-left: 2rem;
+    }
+  }
+}

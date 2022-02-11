@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { Route_Link } from '@interfaces/Route_Link';
 import { PreloadService } from 'src/app/shared/services/preload.service';
 
@@ -7,14 +7,12 @@ import { PreloadService } from 'src/app/shared/services/preload.service';
   templateUrl: './route-link.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RouteLinkComponent implements OnInit {
+export class RouteLinkComponent {
   @Input() link: Route_Link = {} as Route_Link;
 
-  constructor(private preloadService: PreloadService) {}
-
-  ngOnInit(): void {}
+  constructor(private _preloadService: PreloadService) {}
 
   startPreload(pModule: string) {
-    this.preloadService.startpreload(pModule);
+    this._preloadService.startpreload(pModule);
   }
 }

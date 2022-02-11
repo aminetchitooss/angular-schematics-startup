@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { PreloadService } from '@services/preload.service';
+import { User_Model } from '@store/user/user.model';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
@@ -10,17 +11,17 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 })
 export class UndersideNavComponent {
   @Output() closeDrawer: any = new EventEmitter<void>();
-  constructor(private authService: AuthService, private preloadService: PreloadService) {}
+  constructor(private _authService: AuthService, private _preloadService: PreloadService) {}
 
   switchRoute() {
     this.closeDrawer.emit();
   }
 
   logout() {
-    this.authService.logoutPostRedirect();
+    this._authService.logoutPostRedirect();
   }
 
   startPreload() {
-    this.preloadService.startpreload('policies');
+    this._preloadService.startpreload('policies');
   }
 }

@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, Input, NgZone, OnDestroy } from '@angular/core';
 import { shareReplay, tap } from 'rxjs/operators';
 import { MatSidenav } from '@angular/material/sidenav';
-import { MIN_LARGE_SCREEN, MIN_MID_SCREEN } from '../../global-utils/constants';
-import { DataService } from '../../services/data.service';
-import { User_Model } from '../../store/user/user.model';
+import { DataService } from '@services/data.service';
+import { User_Model } from '@store/user/user.model';
+import { MIN_LARGE_SCREEN, MIN_MID_SCREEN } from '@globalUtils/constants';
 
 @Component({
   selector: 'navigation',
@@ -11,7 +11,7 @@ import { User_Model } from '../../store/user/user.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavigationComponent implements OnDestroy {
-  constructor(private _ngZone: NgZone, public dataService: DataService) {
+  constructor(private _ngZone: NgZone, private _dataService: DataService) {
     this.initDetectResize();
   }
   @Input() user: User_Model = {} as User_Model;
@@ -19,7 +19,7 @@ export class NavigationComponent implements OnDestroy {
   oldWidth = document.body.clientWidth;
   isMidScreen: boolean = this.isLayoutMidScreen();
 
-  readonly isHandset$ = this.dataService.isHandset$.pipe(
+  readonly isHandset$ = this._dataService.isHandset$.pipe(
     shareReplay(),
     tap((res) => (this.isMidScreen = res))
   );
@@ -38,13 +38,13 @@ export class NavigationComponent implements OnDestroy {
     // mid screen layout
     if ((this.oldWidth >= MIN_LARGE_SCREEN && newWidth < MIN_LARGE_SCREEN) || (newWidth >= MIN_LARGE_SCREEN && this.oldWidth < MIN_LARGE_SCREEN))
       this._ngZone.run(() => {
-        this.dataService.updateNavbarLayout(newWidth < MIN_LARGE_SCREEN);
+        this._dataService.updateNavbarLayout(newWidth < MIN_LARGE_SCREEN);
       });
 
     // mobile layout
     if ((this.oldWidth >= MIN_MID_SCREEN && newWidth < MIN_MID_SCREEN) || (newWidth >= MIN_MID_SCREEN && this.oldWidth < MIN_MID_SCREEN))
       this._ngZone.run(() => {
-        this.dataService.updateLayout(newWidth < MIN_MID_SCREEN);
+        this._dataService.updateLayout(newWidth < MIN_MID_SCREEN);
       });
 
     this.oldWidth = newWidth;
